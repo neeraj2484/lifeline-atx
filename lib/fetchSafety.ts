@@ -412,7 +412,7 @@ const requestCache: Record<string, any> = {};
 export async function fetchSafetyIncidents() {
   try {
     const ninetyDaysAgo = format(
-      addDays(new Date(), -148),
+      addDays(new Date(), -365),
       "yyyy-MM-dd'T'HH:mm:ss"
     );
 
@@ -479,6 +479,7 @@ export async function fetchSafetyIncidents() {
     return {};
   }
 }
+
 
 
 // lib/fetchSafety.ts

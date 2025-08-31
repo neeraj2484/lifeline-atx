@@ -1,4 +1,5 @@
 import * as turf from "@turf/turf";
+
 export type RiskLevel = "Low" | "Caution" | "Extreme Caution" | "Danger";
 /**
  * Compute risk for current user location:
@@ -23,6 +24,7 @@ export function computeHeatRisk(
   if (tempF >= 85) return "Caution";
   return "Low";
 }
+
 export async function computeRiskViaGeolocation(geojson: any | null) {
   if (!geojson) return null;
   if (!("geolocation" in navigator)) {
@@ -34,7 +36,7 @@ export async function computeRiskViaGeolocation(geojson: any | null) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const user = turf.point([pos.coords.longitude, pos.coords.latitude]);
-        const res = computeRiskForPoint(user, geojson);
+        const res = computeRiskForPoint(user.geometry, geojson);
         resolve(res);
       },
       (err) => {
@@ -46,7 +48,7 @@ export async function computeRiskViaGeolocation(geojson: any | null) {
   });
 }
 
-export function computeRiskForPoint(point: turf.helpers.Point, geojson: any) {
+export function computeRiskForPoint(point: GeoJSON.Point, geojson: any) {
   const FIVE_MILES = 5;
 
   // Precompute minimum distance to polygon boundaries

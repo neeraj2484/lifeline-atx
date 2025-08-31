@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import { fetchIncidents } from "../lib/fetchSafety";
+import { fetchSafetyIncidents } from "../lib/fetchSafety";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
 
@@ -20,7 +20,7 @@ console.log("SafetyLayer");
 
     const loadData = async () => {
       try {
-        const incidents = await fetchIncidents();
+        const incidents = await fetchSafetyIncidents();
         if (cancelled) return;
 
         // ✅ Already returns GeoJSON from fetchIncidents
