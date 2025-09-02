@@ -33,7 +33,7 @@ export default function MapPage() {
   const [status, setStatus] = useState<"Ready" | "Syncing" | "Synced">("Ready");
   const [floodRisk, setFloodRisk] = useState<RiskLevel>("Low");
   const [heatRiskD, setHeatRiskD] = useState<RiskLevel>();
-  const [helpOpen, setHelpOpen] = useState(true);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   // Austin lat/lon (can be replaced with geolocation)
   const lat = 30.2672;
